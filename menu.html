@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ATM Menu</title>
+  <style>
+    body { font-family: Arial; background: #f9f9f9; text-align: center; }
+    .menu { margin: 80px auto; padding: 20px; width: 350px; background: #fff; border-radius: 10px; box-shadow: 0 0 10px gray; }
+    button { display: block; margin: 15px auto; padding: 10px 20px; width: 80%; background: #28a745; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #19692c; }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <h2>Welcome to ATM</h2>
+    <button onclick="deposit()">Deposit</button>
+    <button onclick="withdraw()">Withdraw</button>
+    <button onclick="checkBalance()">Check Balance</button>
+    <button onclick="logout()">Exit</button>
+  </div>
+
+  <script>
+    function deposit() {
+      let amt = prompt("Enter amount to deposit:");
+      if (amt) {
+        let balance = parseFloat(localStorage.getItem("balance"));
+        balance += parseFloat(amt);
+        localStorage.setItem("balance", balance);
+        alert("Deposited: " + amt);
+      }
+    }
+
+    function withdraw() {
+      let amt = prompt("Enter amount to withdraw:");
+      if (amt) {
+        let balance = parseFloat(localStorage.getItem("balance"));
+        if (balance >= amt) {
+          balance -= parseFloat(amt);
+          localStorage.setItem("balance", balance);
+          alert("Withdrawn: " + amt);
+        } else {
+          alert("Insufficient Balance!");
+        }
+      }
+    }
+
+    function checkBalance() {
+      let balance = localStorage.getItem("balance");
+      alert("Your balance is: " + balance);
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

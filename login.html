@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ATM Login</title>
+  <style>
+    body { font-family: Arial; background: #f2f2f2; text-align: center; }
+    .box { margin: 100px auto; padding: 20px; width: 300px; background: #fff; border-radius: 10px; box-shadow: 0 0 10px gray; }
+    input { width: 90%; padding: 10px; margin: 10px; border: 1px solid #ccc; border-radius: 5px; }
+    button { padding: 10px 20px; background: #2e86de; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #1b4f72; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>ATM Login</h2>
+    <input type="text" id="account" placeholder="Enter Account No"><br>
+    <input type="password" id="pin" placeholder="Enter PIN"><br>
+    <button onclick="login()">Login</button>
+    <p id="msg" style="color:red;"></p>
+  </div>
+
+  <script>
+    function login() {
+      let acc = document.getElementById("account").value;
+      let pin = document.getElementById("pin").value;
+
+      // Demo accounts
+      if ((acc === "12345" && pin === "12345") || (acc === "67890" && pin === "67890")) {
+        localStorage.setItem("currentAccount", acc);
+        if(acc==="12345") localStorage.setItem("balance", 5000);
+        if(acc==="67890") localStorage.setItem("balance", 10000);
+        window.location.href = "menu.html";
+      } else {
+        document.getElementById("msg").innerText = "Invalid account or PIN!";
+      }
+    }
+  </script>
+</body>
+</html>
